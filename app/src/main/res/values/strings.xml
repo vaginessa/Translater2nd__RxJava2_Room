@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Translater 2nd (Rx+Room)</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="isDelete">Удалить выбранные элементы?</string>
+    <string name="history_title">История</string>
+    <string name="favourite_title">Избранное</string>
+    <string name="type_text_translate">Введите слово для перевода</string>
+    <string name="lang_en">Английский</string>
+    <string name="lang_ru">Русский</string>
+</resources>

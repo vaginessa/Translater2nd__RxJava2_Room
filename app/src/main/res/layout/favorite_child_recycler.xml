@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+
+                                             android:id="@+id/container_child_favorite" android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/word_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="0dp"
+        android:text="in"
+        app:layout_constraintLeft_toRightOf="@+id/image_favorite"
+        app:layout_constraintTop_toTopOf="@id/image_favorite"/>
+
+    <TextView
+        android:id="@+id/word_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="16dp"
+        android:text="out"
+        app:layout_constraintBottom_toBottomOf="@id/image_favorite"
+        app:layout_constraintLeft_toRightOf="@id/image_favorite"/>
+
+    <ImageView
+        android:id="@+id/image_favorite"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="16dp"
+        android:src="@drawable/ic_favorite"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/lang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:text="lang"
+        app:layout_constraintBottom_toBottomOf="@id/image_favorite"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/image_favorite"/>
+</android.support.constraint.ConstraintLayout>
