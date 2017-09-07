@@ -269,12 +269,11 @@ public class TranslateF extends Fragment implements TranslateContract.View {
     }
 
     @Override
-    public void setFavourite() {
-        favorite.setBackgroundResource(R.drawable.ic_favorite);
+    public void setStateFavourite(boolean state) {
+        if (state)
+            favorite.setImageResource(R.drawable.ic_favorite);
+        else favorite.setImageResource(R.drawable.ic_inactive_favorite);
     }
 
-    @Override
-    public void outsetFavourite() {
-        favorite.setBackgroundResource(R.drawable.ic_inactive_favorite);
-    }
+
 }

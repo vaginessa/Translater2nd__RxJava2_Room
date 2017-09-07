@@ -91,7 +91,7 @@ public class TranslatePresenter implements TranslateContract.Presenter {
         Maybe<TranslateItem> search = Maybe
                 .concat(
                         repository.checkItem(wordIn),
-                        repository.searchRemote(wordIn,lang_en_ru ? "en-ru" : "ru-en")
+                        repository.searchRemote(wordIn, lang_en_ru ? "en-ru" : "ru-en")
                                 .toMaybe())
                 .firstElement();
 
@@ -125,6 +125,7 @@ public class TranslatePresenter implements TranslateContract.Presenter {
                     public void onSuccess(@NonNull TranslateItem translateItem) {
                         view.setWordIn(translateItem.getWordIn());
                         view.setWordOut(translateItem.getWordOut());
+                        view.setStateFavourite(translateItem.isFavorite());
                         Log.v("sdfsdffdgsdf", "succes " + translateItem.getWordIn() + "   " + translateItem.getWordOut());
                     }
 
@@ -165,8 +166,8 @@ public class TranslatePresenter implements TranslateContract.Presenter {
                     @Override
                     public void onComplete() {
                         if (item.isFavorite())
-                            view.setFavourite();
-                        else view.outsetFavourite();
+                            view.setStateFavourite(true);
+                        else view.setStateFavourite(false);
                     }
 
                     @Override

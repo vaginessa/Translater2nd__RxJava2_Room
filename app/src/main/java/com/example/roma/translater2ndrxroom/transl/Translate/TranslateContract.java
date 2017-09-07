@@ -35,9 +35,8 @@ public interface TranslateContract {
 
         void hideFavourite();
 
-        void setFavourite();
+        void setStateFavourite(boolean state);
 
-        void outsetFavourite();
 
     }
 

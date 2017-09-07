@@ -36,7 +36,7 @@
                         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="5dp"
                         android:src="@drawable/ic_garbage"/>
                 </LinearLayout>
 
@@ -52,7 +52,9 @@
         android:layout_marginRight="0dp"
         android:layout_marginTop="0dp"
         android:background="@android:color/transparent"
+        android:drawablePadding="16dp"
         android:drawableStart="@drawable/ic_search"
+        android:paddingStart="16dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/clear_search_translate"
