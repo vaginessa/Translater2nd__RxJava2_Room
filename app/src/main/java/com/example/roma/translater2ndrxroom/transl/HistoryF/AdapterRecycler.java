@@ -41,6 +41,7 @@ public class AdapterRecycler extends RecyclerView.Adapter<AdapterRecycler.Histor
         ConstraintLayout container;
         TextView wordIn;
         TextView wordOut;
+        TextView lang;
         ImageView imageFavorite;
 
         public HistoryChildRecycler(View itemView) {
@@ -55,6 +56,7 @@ public class AdapterRecycler extends RecyclerView.Adapter<AdapterRecycler.Histor
             });
             wordIn = (TextView) itemView.findViewById(R.id.word_in);
             wordOut = (TextView) itemView.findViewById(R.id.word_out);
+            lang = (TextView) itemView.findViewById(R.id.lang);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -88,6 +90,7 @@ public class AdapterRecycler extends RecyclerView.Adapter<AdapterRecycler.Histor
         holder.wordIn.setText(listItems.get(position).getWordIn());
         holder.wordOut.setText(listItems.get(position).getWordOut());
         Log.v("sdlfskjdfg", listItems.get(position).isFavorite() + "");
+        holder.lang.setText(listItems.get(position).getLangIn());
         if (listItems.get(position).isFavorite()) {
             holder.imageFavorite.setImageResource(R.drawable.ic_favorite);
         } else {
