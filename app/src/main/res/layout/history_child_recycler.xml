@@ -10,23 +10,36 @@
 
     <TextView
         android:id="@+id/word_in"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="0dp"
         android:text="in"
         app:layout_constraintLeft_toRightOf="@+id/image_favorite"
-        app:layout_constraintTop_toTopOf="@+id/image_favorite"/>
+        app:layout_constraintRight_toLeftOf="@+id/lang"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/word_out"
+        android:layout_marginBottom="8dp"
+        />
 
     <TextView
         android:id="@+id/word_out"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
         android:layout_marginLeft="16dp"
         android:text="out"
-        app:layout_constraintBottom_toBottomOf="@+id/image_favorite"
-        app:layout_constraintLeft_toRightOf="@+id/image_favorite"/>
+        app:layout_constraintLeft_toRightOf="@+id/image_favorite"
+        app:layout_constraintRight_toLeftOf="@+id/lang"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/word_in"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"/>
 
     <ImageView
         android:id="@+id/image_favorite"
@@ -35,7 +48,9 @@
         android:layout_marginLeft="16dp"
         android:src="@drawable/ic_inactive_favorite"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="16dp"/>
 
     <TextView
         android:id="@+id/lang"
@@ -47,5 +62,6 @@
         android:text="lang"
         app:layout_constraintBottom_toBottomOf="@+id/image_favorite"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/image_favorite"/>
+        app:layout_constraintTop_toTopOf="@+id/image_favorite"
+        android:layout_marginEnd="16dp"/>
 </android.support.constraint.ConstraintLayout>
