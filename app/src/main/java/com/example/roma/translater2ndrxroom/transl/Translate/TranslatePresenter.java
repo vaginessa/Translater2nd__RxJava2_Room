@@ -1,9 +1,12 @@
 package com.example.roma.translater2ndrxroom.transl.Translate;
 
+import android.content.Context;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.example.roma.translater2ndrxroom.data.TranslateItem;
 import com.example.roma.translater2ndrxroom.data.source.Repository;
+import com.example.roma.translater2ndrxroom.util.NetworkConnection;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +17,7 @@ import io.reactivex.SingleSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -23,6 +27,8 @@ import io.reactivex.schedulers.Schedulers;
 
 
 public class TranslatePresenter implements TranslateContract.Presenter {
+
+    Context context;
 
     private Repository repository;
 
@@ -36,9 +42,11 @@ public class TranslatePresenter implements TranslateContract.Presenter {
     CompositeDisposable disposableSearch = new CompositeDisposable();
 
 
-    public TranslatePresenter(Repository repository, TranslateContract.View view) {
+    public TranslatePresenter(Repository repository, TranslateContract.View view, Context context) {
         this.repository = repository;
         this.view = view;
+        this.context = context;
+
     }
 
     @Override
@@ -53,7 +61,7 @@ public class TranslatePresenter implements TranslateContract.Presenter {
 
     @Override
     public void unsubscribe() {
-
+        disposableSearch.clear();
     }
 
     @Override
@@ -65,6 +73,7 @@ public class TranslatePresenter implements TranslateContract.Presenter {
             view.showAnimSwitch(false);
             lang_en_ru = true;
         }
+        Log.v("lang", lang_en_ru+" ");
     }
 
     @Override
@@ -77,6 +86,11 @@ public class TranslatePresenter implements TranslateContract.Presenter {
 
     @Override
     public void searchTranslate(final String wordIn) {
+        if (NetworkConnection.isLostConnection(context)){
+            view.showErrorMessage();
+            return;
+        }
+        view.hideErrorMessage();
         switchViewsState(false);
         if (wordIn.length() == 0) {
             view.hideProgress();
@@ -95,7 +109,7 @@ public class TranslatePresenter implements TranslateContract.Presenter {
                                 .toMaybe())
                 .firstElement();
 
-        disposableSearch.add(search
+        Disposable searchDispos = search
                 .delay(1000, TimeUnit.MILLISECONDS)
                 .doOnSuccess(new Consumer<TranslateItem>() {
                     @Override
@@ -136,15 +150,19 @@ public class TranslatePresenter implements TranslateContract.Presenter {
                     public void onError(@NonNull Throwable e) {
                         e.printStackTrace();
                     }
-                }));
+                });
+        disposableSearch.add(searchDispos);
     }
 
     private void switchViewsState(boolean stateShow) {
         if (stateShow) {
+            view.hideErrorMessage();
             view.hideProgress();
             view.showWords();
             view.showFavourite();
         } else {
+            view.hideErrorMessage();
+
             view.showProgress();
             view.hideFavourite();
             view.hideWords();

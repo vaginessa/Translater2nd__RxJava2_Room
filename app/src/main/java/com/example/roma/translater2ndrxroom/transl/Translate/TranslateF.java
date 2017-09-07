@@ -1,6 +1,7 @@
 package com.example.roma.translater2ndrxroom.transl.Translate;
 
 
+import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -33,6 +34,8 @@ public class TranslateF extends Fragment implements TranslateContract.View {
 
     TextView translateWordOut;
 
+    private ImageView error;
+
     private ImageView favorite;
 
     private EditText searchEditText;
@@ -53,7 +56,7 @@ public class TranslateF extends Fragment implements TranslateContract.View {
         View view = inflater.inflate(R.layout.fragment_translate, container, false);
 //        initHeaderSwitch(view);
 
-        presenter = new TranslatePresenter(Injection.provideRepository(getContext().getApplicationContext()), this);
+        presenter = new TranslatePresenter(Injection.provideRepository(getContext().getApplicationContext()), this, getContext());
 
         initToolbar(view);
         initSearchField(view);
@@ -67,6 +70,7 @@ public class TranslateF extends Fragment implements TranslateContract.View {
         translateWordIn = (TextView) view.findViewById(R.id.translate_word_in);
         translateWordOut = (TextView) view.findViewById(R.id.translate_word_out);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        error = (ImageView) view.findViewById(R.id.error);
         favorite = (ImageView) view.findViewById(R.id.favorite_word_translate);
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,20 +100,6 @@ public class TranslateF extends Fragment implements TranslateContract.View {
             @Override
             public void afterTextChanged(final Editable s) {
                 presenter.searchTranslate(s.toString());
-//                if (timer != null)
-//                    timer.cancel();
-//                timer = new CountDownTimer(1000, 1) {
-//                    @Override
-//                    public void onTick(long millisUntilFinished) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onFinish() {
-//                        presenter.searchTranslate(s.toString());
-//
-//                    }
-//                }.start();
             }
         });
 
@@ -273,6 +263,16 @@ public class TranslateF extends Fragment implements TranslateContract.View {
         if (state)
             favorite.setImageResource(R.drawable.ic_favorite);
         else favorite.setImageResource(R.drawable.ic_inactive_favorite);
+    }
+
+    @Override
+    public void showErrorMessage() {
+        error.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideErrorMessage() {
+        error.setVisibility(View.INVISIBLE);
     }
 
 

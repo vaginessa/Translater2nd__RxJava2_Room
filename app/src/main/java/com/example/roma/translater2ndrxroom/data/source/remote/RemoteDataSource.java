@@ -77,8 +77,6 @@ public class RemoteDataSource implements DataSource {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
-        Log.v("sdfsdfsdfg", "remote call");
-
 
         return retrofit.create(Server.class)
                 .getTranslateWord(Const.API_KEY_TRANSLATE, word, lang)
@@ -86,14 +84,19 @@ public class RemoteDataSource implements DataSource {
                     @Override
                     public void accept(@NonNull Throwable throwable) throws Exception {
                         throwable.printStackTrace();
-                        Log.v("sdfsdfsdfg", " on rx ERRRRRROOOOOR");
 
                     }
                 })
                 .map(new Function<Translate, String>() {
                     @Override
                     public String apply(@NonNull Translate translate) throws Exception {
+                        for (int i = 0; i<translate.getText().size();i++) {
+                            Log.v("translate list", " " + translate.getText().get(i));
+
+                        }
                         return translate.getText().get(0);
+
+
                     }
                 })
                 .flatMap(new Function<String, SingleSource<? extends TranslateItem>>() {

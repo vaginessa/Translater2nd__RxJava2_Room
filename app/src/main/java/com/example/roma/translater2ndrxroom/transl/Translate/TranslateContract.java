@@ -37,6 +37,10 @@ public interface TranslateContract {
 
         void setStateFavourite(boolean state);
 
+        void showErrorMessage();
+
+        void hideErrorMessage();
+
 
     }
 
