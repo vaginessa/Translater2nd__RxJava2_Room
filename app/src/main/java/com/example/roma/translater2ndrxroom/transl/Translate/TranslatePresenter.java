@@ -103,7 +103,9 @@ public class TranslatePresenter implements TranslateContract.Presenter {
                         repository.insert(new TranslateItem(
                                 translateItem.getWordIn(),
                                 translateItem.getWordOut(),
-                                translateItem.getLangIn()));
+                                translateItem.getLangIn(),
+                                translateItem.isFavorite())
+                        );
                     }
                 })
                 .flatMapSingle(new Function<TranslateItem, SingleSource<TranslateItem>>() {
@@ -123,6 +125,7 @@ public class TranslatePresenter implements TranslateContract.Presenter {
                 .subscribeWith(new DisposableSingleObserver<TranslateItem>() {
                     @Override
                     public void onSuccess(@NonNull TranslateItem translateItem) {
+                        item = translateItem;
                         view.setWordIn(translateItem.getWordIn());
                         view.setWordOut(translateItem.getWordOut());
                         view.setStateFavourite(translateItem.isFavorite());

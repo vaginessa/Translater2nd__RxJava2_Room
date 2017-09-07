@@ -99,7 +99,7 @@ public class RemoteDataSource implements DataSource {
                 .flatMap(new Function<String, SingleSource<? extends TranslateItem>>() {
                     @Override
                     public SingleSource<? extends TranslateItem> apply(@NonNull String s) throws Exception {
-                        return Single.just(new TranslateItem(word, s, lang));
+                        return Single.just(new TranslateItem(word, s, lang,false));
                     }
                 });
 

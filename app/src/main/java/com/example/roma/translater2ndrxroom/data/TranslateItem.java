@@ -15,10 +15,17 @@ public class TranslateItem {
     private boolean isDelete = false;
     private String langIn;
 
-    public TranslateItem(String wordIn, String wordOut, String langIn) {
+//    public TranslateItem(String wordIn, String wordOut, String langIn) {
+//        this.wordIn = wordIn;
+//        this.wordOut = wordOut;
+//        this.langIn = langIn;
+//    }
+
+    public TranslateItem(String wordIn, String wordOut, String langIn, boolean isFavorite) {
         this.wordIn = wordIn;
         this.wordOut = wordOut;
         this.langIn = langIn;
+        this.isFavorite = isFavorite;
     }
 
     public int getId() {
@@ -73,7 +80,8 @@ public class TranslateItem {
         else
             isDelete = false;
     }
-    public void changeFavourite(){
+
+    public void changeFavourite() {
         if (isFavorite)
             setFavorite(false);
         else setFavorite(true);
