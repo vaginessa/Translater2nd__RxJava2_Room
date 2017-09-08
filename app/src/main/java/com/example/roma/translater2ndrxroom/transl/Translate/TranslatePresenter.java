@@ -90,13 +90,14 @@ public class TranslatePresenter implements TranslateContract.Presenter {
             view.showErrorMessage();
             return;
         }
-        view.hideErrorMessage();
+
         switchViewsState(false);
         if (wordIn.length() == 0) {
             view.hideProgress();
             disposableSearch.clear();
             return;
         }
+
         view.showClearButton();
         view.setWordIn(wordIn);
 
@@ -143,7 +144,6 @@ public class TranslatePresenter implements TranslateContract.Presenter {
                         view.setWordIn(translateItem.getWordIn());
                         view.setWordOut(translateItem.getWordOut());
                         view.setStateFavourite(translateItem.isFavorite());
-                        Log.v("sdfsdffdgsdf", "succes " + translateItem.getWordIn() + "   " + translateItem.getWordOut());
                     }
 
                     @Override
@@ -162,7 +162,6 @@ public class TranslatePresenter implements TranslateContract.Presenter {
             view.showFavourite();
         } else {
             view.hideErrorMessage();
-
             view.showProgress();
             view.hideFavourite();
             view.hideWords();

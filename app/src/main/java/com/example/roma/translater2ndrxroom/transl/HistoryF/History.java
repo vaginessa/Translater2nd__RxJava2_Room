@@ -99,7 +99,6 @@ public class History extends Fragment implements HistoryAndFavoriteContract.View
     @Override
     public void onPause() {
         super.onPause();
-
         presenter.unsubscribe();
     }
 

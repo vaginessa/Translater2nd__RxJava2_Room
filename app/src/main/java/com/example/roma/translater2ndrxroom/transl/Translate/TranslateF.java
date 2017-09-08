@@ -66,6 +66,19 @@ public class TranslateF extends Fragment implements TranslateContract.View {
         return view;
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.subscribe();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.unsubscribe();
+    }
+
     private void initTranslateField(View view) {
         translateWordIn = (TextView) view.findViewById(R.id.translate_word_in);
         translateWordOut = (TextView) view.findViewById(R.id.translate_word_out);
